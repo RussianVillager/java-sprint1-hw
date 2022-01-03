@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Приветствуем вас в приложении \"Счётчик калорий\" ");
+        System.out.println("Приветствуем вас в приложении \"Счётчик калорий\" "); // Игорь, приветствую! И вас с Новым Годом! Рад знакомству :)
         Scanner scanner = new Scanner(System.in);
         StepTracker stepTracker = new StepTracker();
         Converter converter = new Converter();
@@ -38,6 +38,7 @@ public class Main {
                 stepTracker.changeTarget();
             } else if (command == 0) {
                 System.out.println("Ждём вас снова :)");
+                scanner.close(); // По окончании работы всего приложения или любого метода, где используем Scanner? Странно, что про данный метод нет ничего в курсе.
                 break;
             } else {
                 System.out.println("Извините, такой команды пока нет.");

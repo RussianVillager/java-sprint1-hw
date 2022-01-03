@@ -8,64 +8,17 @@ public class StepTracker {
     ArrayList<Integer> stepsByDay;
     int stepsTarget = 10000;
     Scanner scanner = new Scanner(System.in);
+    String[] months = {"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"};
 
     public StepTracker() {
 
         stepsAtDayInMonth = new HashMap<>();
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) {
-            stepsByDay.add(0);
+
+        for (String month : months) {
+            stepsByDay = new ArrayList<>();
+            for (int j = 0; j < 30; j++) stepsByDay.add(0);
+            stepsAtDayInMonth.put(month, stepsByDay);
         }
-        stepsAtDayInMonth.put("Январь", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Февраль", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Март", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Апрель", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Май", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Февраль", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Июнь", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Июль", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Август", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Сентябрь", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Октябрь", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Ноябрь", stepsByDay);
-
-        stepsByDay = new ArrayList<>();
-        for (int i = 0; i < 30; i++) stepsByDay.add(0);
-        stepsAtDayInMonth.put("Декабрь", stepsByDay);
-
     }
 
     void saveStepsByDay () {
@@ -105,6 +58,7 @@ public class StepTracker {
         stepsAtDayInMonth.put(month, stepsByDay);
         System.out.println("Количество шагов сохранено.");
         System.out.println("За " + month + " " + day + "-ого числа вы прошли " + steps + " шагов.");
+        scanner.close();
     }
 
     void getStepsByDayStatistic (String month) {
@@ -151,7 +105,6 @@ public class StepTracker {
             } else {
                 checkSeriesList.put(numberOfSeries, seriesCounter);
                 numberOfSeries += 1;
-                // сохраняем результат в хеш-таблицу
                 seriesCounter = 0;
             }
         }
@@ -174,5 +127,6 @@ public class StepTracker {
             }
         }
         System.out.println("Новое целевое количество шагов сохранено: " + stepsTarget + " шагов.");
+        scanner.close();
     }
 }
