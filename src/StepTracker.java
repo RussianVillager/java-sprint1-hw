@@ -85,7 +85,7 @@ public class StepTracker {
         while (true) {
             System.out.print("Введите день, за который вы хотите указать количество шагов: ");
             day = scanner.nextByte();
-            if (day > 0) {
+            if (day > 0 && day <= 30) {
                 break;
             } else {
                 System.out.println("Введен некорректный номер дня, повторите попытку.");
