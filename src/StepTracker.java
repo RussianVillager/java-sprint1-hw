@@ -7,6 +7,7 @@ public class StepTracker {
     HashMap<String, ArrayList<Integer>> stepsAtDayInMonth;
     ArrayList<Integer> stepsByDay;
     int stepsTarget = 10000;
+    Scanner scanner = new Scanner(System.in);
 
     public StepTracker() {
 
@@ -68,7 +69,6 @@ public class StepTracker {
     }
 
     void saveStepsByDay () {
-        Scanner scanner = new Scanner(System.in);
         String month;
         int day;
         int steps;
@@ -84,7 +84,7 @@ public class StepTracker {
         }
         while (true) {
             System.out.print("Введите день, за который вы хотите указать количество шагов: ");
-            day = scanner.nextByte();
+            day = scanner.nextInt();
             if (day > 0 && day <= 30) {
                 break;
             } else {
@@ -164,8 +164,6 @@ public class StepTracker {
     }
 
     void changeTarget () {
-        Scanner scanner = new Scanner(System.in);
-
         while (true) {
             System.out.print("Введите целевое количество шагов за день: ");
             stepsTarget = scanner.nextInt();
