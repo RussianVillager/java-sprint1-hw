@@ -3,54 +3,50 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Приветствуем вас в приложении \"Счётчик калорий\" "); // Игорь, приветствую! И вас с Новым Годом! Рад знакомству :)
+        System.out.println("Приветствуем вас в приложении \"Автоматизированная бухгалтерия\" ");
         Scanner scanner = new Scanner(System.in);
-        StepTracker stepTracker = new StepTracker();
-        Converter converter = new Converter();
+        Operation operation = new Operation();
 
+        label:
         while (true) {
 
             printMenu();
-            int command = scanner.nextInt();
+            String command = scanner.next();
 
-            if (command == 1) {
-                stepTracker.saveStepsByDay();
-            } else if (command == 2) {
-                System.out.println("Введите название месяца (с большой буквы) за который вы хотите получить статистику:");
-                String month = scanner.next();
-                System.out.println("Количество пройденных шагов по дням:");
-                stepTracker.getStepsByDayStatistic(month);
-                System.out.println("Общее количество шагов за месяц:");
-                System.out.println(stepTracker.getSumOfStepsByMonth(month));
-                int steps = stepTracker.getSumOfStepsByMonth(month);
-                System.out.println("Максимальное пройденное количество шагов в месяце:");
-                System.out.println(stepTracker.getMaxSteps(month));
-                System.out.println("Средне-пройденное количество шагов за месяц:");
-                System.out.println(stepTracker.getMeanOfSteps(month));
-                System.out.println("Пройденная дистанция за месяц:");
-                System.out.println(converter.getDistance(steps));
-                System.out.println("Количество сожжённых килокалорий за месяц:");
-                System.out.println(converter.getBurnKiloCalories(steps));
-                System.out.println("Лучшая серия за месяц:");
-                System.out.println(stepTracker.getBestSeries(month));
-
-            } else if (command == 3) {
-                stepTracker.changeTarget();
-            } else if (command == 0) {
-                System.out.println("Ждём вас снова :)");
-                scanner.close(); // По окончании работы всего приложения или любого метода, где используем Scanner? Странно, что про данный метод нет ничего в курсе.
-                break;
-            } else {
-                System.out.println("Извините, такой команды пока нет.");
+            switch (command) {
+                case "1":
+                    operation.getMonthlyReport();
+                    break;
+                case "2":
+                    operation.getYearlyReport();
+                    break;
+                case "3":
+                    operation.compareReports();
+                    break;
+                case "4":
+                    operation.getInformationByMonths();
+                    break;
+                case "5":
+                    operation.getInformationByYear();
+                    break;
+                case "escape":
+                    System.out.println("Ждём вас снова :)");
+                    scanner.close();
+                    break label;
+                default:
+                    System.out.println("Извините, такой команды пока нет.");
+                    break;
             }
         }
     }
 
     public static void printMenu() {
         System.out.println("Что вы хотите сделать? ");
-        System.out.println("1 - Ввести количество шагов за выбранный день");
-        System.out.println("2 - Получить статистику за выбранный месяц");
-        System.out.println("3 - Изменить цель по количеству шагов в день");
-        System.out.println("0 - Выход из приложения");
+        System.out.println("1 - Считать все месячные отчёты");
+        System.out.println("2 - Считать годовой отчёт");
+        System.out.println("3 - Сверить отчёты");
+        System.out.println("4 - Вывести информацию о всех месячных отчётах");
+        System.out.println("5 - Вывести информацию о годовом отчёте");
+        System.out.println("escape - Завершение работы приложения");
     }
 }
