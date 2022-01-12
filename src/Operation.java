@@ -18,7 +18,7 @@ public class Operation {
             int sumYearlyIncomes = yearlyReport.getYearlyIncomes(i);
             int sumMonthlyExpenses = monthlyReport.getMonthlyExpenses(i);
             int sumYearlyExpenses = yearlyReport.getYearlyExpenses(i);
-            if ((sumMonthlyIncomes != sumYearlyIncomes) && (sumMonthlyExpenses != sumYearlyExpenses)) {
+            if ((sumMonthlyIncomes != sumYearlyIncomes) || (sumMonthlyExpenses != sumYearlyExpenses)) {
                 System.out.println("В месяце № " + i + " обнаружено несоответсвие");
             } else {
                 System.out.println("Операция завершена успешно");

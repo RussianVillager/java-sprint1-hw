@@ -6,36 +6,34 @@ public class Main {
         System.out.println("Приветствуем вас в приложении \"Автоматизированная бухгалтерия\" ");
         Scanner scanner = new Scanner(System.in);
         Operation operation = new Operation();
+        boolean isMonthlyRead = false;
+        boolean isYearlyRead = false;
 
-        label:
         while (true) {
 
             printMenu();
             String command = scanner.next();
 
-            switch (command) {
-                case "1":
-                    operation.getMonthlyReport();
-                    break;
-                case "2":
-                    operation.getYearlyReport();
-                    break;
-                case "3":
-                    operation.compareReports();
-                    break;
-                case "4":
-                    operation.getInformationByMonths();
-                    break;
-                case "5":
-                    operation.getInformationByYear();
-                    break;
-                case "escape":
-                    System.out.println("Ждём вас снова :)");
-                    scanner.close();
-                    break label;
-                default:
-                    System.out.println("Извините, такой команды пока нет.");
-                    break;
+            if ("1".equals(command)) {
+                operation.getMonthlyReport();
+                isMonthlyRead = true;
+                System.out.println("Все месячные отчеты считаны!");
+            } else if ("2".equals(command)) {
+                operation.getYearlyReport();
+                isYearlyRead = true;
+                System.out.println("Годовой отчет считан!");
+            } else if ("3".equals(command) && (isYearlyRead) && (isMonthlyRead)) {
+                operation.compareReports();
+            } else if ("4".equals(command) && (isMonthlyRead)) {
+                operation.getInformationByMonths();
+            } else if ("5".equals(command) && (isYearlyRead)) {
+                operation.getInformationByYear();
+            } else if ("escape".equals(command)) {
+                System.out.println("Ждём вас снова :)");
+                scanner.close();
+                break;
+            } else {
+                System.out.println("Извините, такой команды пока нет или вы не считали необходимые отчеты");
             }
         }
     }

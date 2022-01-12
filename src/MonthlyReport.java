@@ -1,28 +1,17 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MonthlyReport {
 
+    Reader reader = new Reader();
     HashMap<Integer, ArrayList<String[]>> monthlyReportTable = new HashMap<>();
-
-    String readFileContentsOrNull(String path) {
-        try {
-            return Files.readString(Path.of(path));
-        } catch (IOException e) {
-            System.out.println("Невозможно прочитать файл с годовым отчётом. Возможно, файл не находится в нужной директории.");
-            return null;
-        }
-    }
 
     void getMonthlyReport() {
 
         String nameOfFile;
         for (int i = 1; i <= 3; i++) {
             nameOfFile = "m.20210" + i + ".csv";
-            String fileContents = readFileContentsOrNull("resources/" + nameOfFile);
+            String fileContents = reader.readMonthlyFilesContentsOrNull("resources/" + nameOfFile);
             String[] lines = fileContents.split("\\n");
 
             ArrayList<String[]> monthlyReportLines = new ArrayList<>();
